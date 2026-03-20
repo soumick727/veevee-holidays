@@ -28,35 +28,59 @@ public class ApiController {
     public ResponseEntity<Bus> addBus(@RequestBody Bus bus) {
         Bus saved = busService.addBus(bus);
         if (saved != null) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(saved);
+            return new ResponseEntity<>(saved, HttpStatus.OK);
         }
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        else
+        {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/getAllBus")
     public ResponseEntity<List<Bus>> getAllBus() {
         List<Bus> buses = busService.getAllBuses();
-        if (buses.isEmpty()) {
-            return ResponseEntity.noContent().build();
+        if(!buses.isEmpty()) {
+            return new ResponseEntity<>(buses, HttpStatus.OK);
         }
-        return ResponseEntity.ok(buses);
+        else
+        {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("/getBus/{id}")
     public ResponseEntity<Bus> getBusById(@PathVariable int id) {
         Bus bus = busService.getBusById(id);
-        return bus != null ? ResponseEntity.ok(bus) : ResponseEntity.notFound().build();
+        if(bus != null) {
+            return new ResponseEntity<>(bus, HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping("/updateBus/{id}")
     public ResponseEntity<Bus> updateBus(@PathVariable int id, @RequestBody Bus bus) {
         Bus updated = busService.updateBus(id, bus);
-        return updated != null ? ResponseEntity.ok(updated) : ResponseEntity.notFound().build();
+        if (updated != null) {
+            return new ResponseEntity<>(updated, HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("/deleteBus/{id}")
     public ResponseEntity<Void> deleteBus(@PathVariable int id) {
         boolean deleted = busService.deleteBus(id);
-        return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+        if (deleted) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        else
+        {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }

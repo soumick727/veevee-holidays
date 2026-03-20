@@ -1,5 +1,6 @@
 package com.example.springapp.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,11 +11,23 @@ public class Bus {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "capacity")
     private int capacity;
+
+    @Column(name = "servicedate")
     private String servicedate;
+
+    
+    @Column(name = "Kilometer")
     private int Kilometer;
+
+    @Column(name = "BusType")
     private String BusType;
 
     public Bus() {}
