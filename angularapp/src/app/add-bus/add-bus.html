@@ -1,1 +1,50 @@
-<p>add-bus works!</p>
+<div class="add-bus-container">
+  <h2>Add Bus</h2>
+  <form (ngSubmit)="onSubmit()" #busForm="ngForm">
+    
+    <div class="form-group">
+      <label>Bus Name</label>
+      <input type="text" name="name" [(ngModel)]="busData.name" required
+        placeholder="Enter bus name" />
+      <span class="error" *ngIf="submitted && !busData.name">Bus name is required</span>
+    </div>
+
+    <div class="form-group">
+      <label>Capacity</label>
+      <input type="number" name="capacity" [(ngModel)]="busData.capacity" required
+        placeholder="Enter capacity" />
+      <span class="error" *ngIf="submitted && !busData.capacity">Capacity is required</span>
+    </div>
+
+    <div class="form-group">
+      <label>Last Service Date</label>
+      <input type="date" name="servicedate" [(ngModel)]="busData.servicedate" required />
+      <span class="error" *ngIf="submitted && !busData.servicedate">Service date is required</span>
+    </div>
+
+    <div class="form-group">
+      <label>Total Kilometer</label>
+      <input type="number" name="Kilometer" [(ngModel)]="busData.Kilometer" required
+        placeholder="Enter total kilometer" />
+      <span class="error" *ngIf="submitted && !busData.Kilometer">Kilometer is required</span>
+    </div>
+
+    <div class="form-group">
+      <label>Bus Type</label>
+      <select name="BusType" [(ngModel)]="busData.BusType" required>
+        <option value="">Select Bus Type</option>
+        <option value="AC">AC</option>
+        <option value="Non-AC">Non-AC</option>
+      </select>
+      <span class="error" *ngIf="submitted && !busData.BusType">Bus type is required</span>
+    </div>
+
+    <button type="submit">Add Bus</button>
+
+  </form>
+
+  <div class="success-message" *ngIf="successMessage">
+    <p>✅ Bus has been successfully added!</p>
+    <button (click)="navigateToViewBus()">OK</button>
+  </div>
+</div>
