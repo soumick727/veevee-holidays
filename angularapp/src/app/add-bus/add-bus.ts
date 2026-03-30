@@ -18,8 +18,8 @@ export class AddBus {
     name: '',
     capacity: 0,
     servicedate: '',
-    Kilometer: 0,
-    BusType: ''
+    kilometer: 0,
+    busType: ''
   };
 
   submitted: boolean = false;
@@ -29,7 +29,7 @@ export class AddBus {
 
   onSubmit() {
     this.submitted = true;
-    if(!this.busData.name || !this.busData.capacity || !this.busData.servicedate || !this.busData.Kilometer || !this.busData.BusType) {
+    if(!this.busData.name || !this.busData.capacity || !this.busData.servicedate || !this.busData.kilometer || !this.busData.busType) {
       return;
     }
     this.busService.addBus(this.busData).subscribe({
@@ -41,8 +41,8 @@ export class AddBus {
           name: '',
           capacity: 0,
           servicedate: '',
-          Kilometer: 0,
-          BusType: ''
+          kilometer: 0,
+          busType: ''
         };
       },
       error: (error) => {

@@ -3,6 +3,6 @@ export interface Bus {
   name: string;
   capacity: number;
   servicedate: string;
-  Kilometer: number;
-  BusType: string;
+  kilometer: number;
+  busType: string;
 }

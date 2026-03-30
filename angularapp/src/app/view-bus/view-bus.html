@@ -1,1 +1,35 @@
-<p>view-bus works!</p>
+<div class="view-bus-container">
+  <h2>All Buses</h2>
+
+  <div class="no-data" *ngIf="busData.length === 0">
+    <p>No buses found! Please add a bus first.</p>
+  </div>
+
+  <table *ngIf="busData.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Capacity</th>
+        <th>Service Date</th>
+        <th>Kilometer</th>
+        <th>Bus Type</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bus of busData">
+        <td>{{ bus.id }}</td>
+        <td>{{ bus.name }}</td>
+        <td>{{ bus.capacity }}</td>
+        <td>{{ bus.servicedate }}</td>
+        <td>{{ bus.kilometer }}</td>
+        <td>{{ bus.busType }}</td>
+        <td>
+          <button class="edit-btn" (click)="editBus(bus.id!)">Edit</button>
+          <button class="delete-btn" (click)="deleteBus(bus.id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

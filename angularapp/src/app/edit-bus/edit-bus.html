@@ -1,7 +1,8 @@
-<div class="add-bus-container">
-  <h2>Add Bus</h2>
+<div class="edit-bus-container">
+  <h2>Edit Bus</h2>
+
   <form (ngSubmit)="onSubmit()" #busForm="ngForm">
-    
+
     <div class="form-group">
       <label>Bus Name</label>
       <input type="text" name="name" [(ngModel)]="busData.name" required
@@ -39,12 +40,15 @@
       <span class="error" *ngIf="submitted && !busData.busType">Bus type is required</span>
     </div>
 
-    <button type="submit">Add Bus</button>
+    <div class="button-group">
+      <button type="submit" class="update-btn">Update Bus</button>
+      <button type="button" class="cancel-btn" (click)="cancel()">Cancel</button>
+    </div>
 
   </form>
 
   <div class="success-message" *ngIf="successMessage">
-    <p>✅ Bus has been successfully added!</p>
+    <p>✅ Bus updated successfully!</p>
     <button (click)="navigateToViewBus()">OK</button>
   </div>
 </div>
